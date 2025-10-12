@@ -4,49 +4,569 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qualnex Solutions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ArmSCII/mardoto/fonts.css">
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: white;
+      color: #000;
+    }
+
+    /* ✅ Navigation Bar */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      padding: 10px 20px;
+      border-bottom: 2px solid #1f80ff; /* Blue strip */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-logo img {
+      height: 70px;
+      width: auto;
+    }
+
+    /* ✅ Navigation Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px; /* space between links */
+      list-style: none; /* removes bullets */
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1f80ff; /* your blue */
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a:hover {
+      color: #1edfe6; /* bright blue hover */
+      border-bottom: 2px solid #1edfe6;
+    }
+
+    /* ✅ Hero Section */
+    .hero {
+      margin-top: 80px; /* Push content below fixed nav */
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 80px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      background-color: white; /* light background */
-    }
-
-    img {
-      max-width: 400px;
-      height: auto;
-      margin-bottom: 5px;
-    }
-
-    .company-name {
-      font-size: 2rem;      /* ✅ Large text */
-      font-weight: bold;    /* ✅ Bold */
       text-align: center;
-      margin-bottom: 15px;  /* space before mission statement */
-      color: #1f80ff;          /* black text */
+      padding: 0 20px;
+      overflow: hidden; /* Keep overlays contained */
     }
 
-    .mission {
-      font-size: 1.2rem;
+
+      /* Background image layer with brightness */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("websitebannerQS_NASA.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(2); /* ✅ makes image brighter */
+      z-index: 0;
+    }
+
+
+      /* Gradient overlay */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgb(0, 42, 255, 0.8), rgb(0, 247, 255, 0.8));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+
+    /* Hero text */
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      color: white;
+      font-size: 3.5rem; /* ✅ much larger header */
+      font-weight: 800;
+      letter-spacing: 1px;
+      max-width: 900px;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    /* 📱 Mobile-friendly scaling */
+    @media (max-width: 900px) {
+      .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.4;
+      }
+    }
+
+    /* Intro Section */
+    #about {
+      background-color: white;
+      padding: 100px 20px;
       text-align: center;
-      max-width: 600px;
-      line-height: 1.5;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-header {
+      color: #1f80ff; /* your brand blue */
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about-text {
       color: #000;
-      padding: 0 10px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 800px;
+      margin: 0 auto;
     }
+    .core-values {
+      margin-top: 80px; /* adds space between about paragraph and core values */
+    }
+
+    /* 🧩 Responsive tweak for mobile */
+    @media (max-width: 768px) {
+      .core-values {
+        margin-top: 50px; /* a bit tighter on phones */
+      }
+    }
+
+    /* ✅ Core Values (part of About) */
+    .core-header {
+      font-size: 1.8rem;
+      color: #1f80ff;
+      margin-bottom: 60px;
+    }
+
+    .core-values-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .core-value {
+      flex: 1;
+      max-width: 300px;
+      min-width: 250px;
+      background-color: #ffffff; /* white background */
+      border: 2px solid #1f80ff; /* your brand blue border */
+      border-radius: 12px; /* soft corners */
+      padding: 30px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      
+      /* ✅ Center content */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .core-value:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #1edfe6; /* brighter blue on hover */
+    }
+
+    .core-value i[data-lucide] {
+      width: 70px;
+      height: 70px;
+      stroke: #1f80ff;
+      stroke-width: 2;
+      margin-bottom: 20px;
+    }
+
+    .core-value h4 {
+      font-size: 1.3rem;
+      color: #1f80ff;
+      margin-bottom: 10px;
+    }
+
+    .core-value p {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* ✅ Mobile-friendly */
+    @media (max-width: 768px) {
+      .core-values-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .core-value {
+        max-width: 90%;
+      }
+    }
+
+    /* 🟦 Our Solutions Section */
+    .solutions-section {
+      background-color: #1f80ff; /* brand blue background */
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .solutions-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: white; /* ensures header text is white */
+    }
+
+    /* Each solution box (same blue, white outline, slightly smaller) */
+    .solution-box {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      background-color: #1f80ff; /* same blue for box background */
+      border: 2px solid white; /* ✅ white outline */
+      border-radius: 16px;
+      margin-bottom: 60px;
+      overflow: hidden;
+      text-align: left;
+      max-width: 1200px;
+      height: 400px; /* ✅ reduced height (10% smaller) */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Left side text */
+    .solution-text {
+      flex: 1.2;
+      padding: 50px; /* inner spacing */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .solution-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .solution-text ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .solution-text li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 20px;
+      font-size: 1.05rem;
+    }
+
+    .solution-text li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #1edfe6; /* accent bullet */
+      font-weight: bold;
+    }
+
+    /* Right side image */
+    .solution-image {
+      flex: 0.8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .solution-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 📱 Mobile Responsive */
+    @media (max-width: 900px) {
+      .solution-box {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+      }
+
+      .solution-text {
+        padding: 40px 20px;
+      }
+
+      .solution-image {
+        height: 250px;
+      }
+    }
+
+
+
+    /* ✅ Contact Section Styles */
+    .contact-section {
+      background-color: white; /* page background stays clean */
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      color: #1f80ff;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-section p {
+      color: #000;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      line-height: 1.6;
+    }
+
+    /* ✅ Footer */
+    footer {
+      background-color: #1f80ff; /* brand blue */
+      color: white;
+      padding: 15px 20px;
+      border-top: 2px solid white;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo img {
+      height: 60px;
+      width: auto;
+    }
+
+    .footer-contact {
+      text-align: right;
+    }
+
+    .footer-contact p {
+      margin: 5px 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      font-size: 0.95rem; /* slightly smaller */
+      font-weight: 400; /* lighter weight */
+      opacity: 0.9; /* gives a subtle soft look */
+    }
+
+    .footer-contact i[data-lucide] {
+      width: 18px;
+      height: 18px;
+      stroke: white;
+      stroke-width: 2;
+      opacity: 0.9;
+    }
+
+    /* ✅ Mobile adjustments */
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .footer-contact {
+        text-align: center;
+      }
+    }
+
+    section {
+      scroll-margin-top: 80px; /* or tweak to 90px depending on your nav height */
+    }
+
+
+
   </style>
 </head>
 <body>
-  <img src="qualnexlogo6.png" alt="Company Logo">
-  <div class="company-name">
-    Qualnex Solutions
-  </div>
-  <div class="mission">
-    Providing AI powered IT solutions for small businesses and government agencies
-  </div>
+
+  <!-- ✅ Navigation Bar -->
+  <nav>
+    <div class="nav-logo">
+      <a href="#home">
+        <img src="qualnexlogo6.png" alt="Qualnex Solutions Logo">
+      </a>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+  
+  <!-- ✅ Hero Section -->
+  <section id="home" class="hero">
+    <h1>TRANSFORMING SMALL BUSINESSES AND GOVERNMENT AGENCIES WITH A.I.</h1>
+    </section>
+  
+    <!-- ✅ Intro Section -->
+    <section id = "about">
+      <h2 class="about-header">Transform with A.I.</h2>
+      <p class="about-text">
+        A new digital age isn't coming — it's already here. 
+        Just like the computer and the internet once redefined how we work and communicate, 
+        A.I. is now transforming the world around us. Through innovative A.I. solutions built to your specific needs, Qualnex Solutions is here to empower your evolution and ensure you aren't left behind.
+      </p>
+
+      <!-- 🟦 Core Values (now part of About section) -->
+      <div class="core-values">
+        <h3 class="core-header">Our Core Values</h3>
+
+        <div class="core-values-container">
+          <!-- Quality -->
+          <div class="core-value">
+            <i data-lucide="award"></i>
+            <h4>Quality</h4>
+            <p>
+              We pride ourselves on delivering precise, high-performing AI solutions that
+              meet the highest standards of reliability and innovation.
+            </p>
+          </div>
+
+          <!-- Collaboration -->
+          <div class="core-value">
+            <i data-lucide="users"></i>
+            <h4>Collaboration</h4>
+            <p>
+              We believe progress happens through partnership — working closely with clients
+              to ensure every solution fits their unique goals.
+            </p>
+          </div>
+
+          <!-- Dedication -->
+          <div class="core-value">
+            <i data-lucide="target"></i>
+            <h4>Dedication</h4>
+            <p>
+              Our team is committed to long-term success, providing consistent support
+              and innovation that help organizations evolve with AI.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ Our Solutions Section -->
+    <section id="solutions" class="solutions-section">
+      <h2 class="solutions-title">Our Solutions</h2>
+
+      <!-- 🟦 Small Businesses -->
+      <div class="solution-box">
+        <div class="solution-text">
+          <h3>Small Businesses</h3>
+          <ul>
+            <li>AI-driven automation to streamline workflows</li>
+            <li>Chatbot assistants for customer engagement</li>
+            <li>Predictive analytics for smarter decision-making</li>
+            <li>Marketing optimization powered by machine learning</li>
+            <li>Custom AI integrations for unique business challenges</li>
+          </ul>
+        </div>
+        <div class="solution-image">
+          <img src="smallbusiness.jpg" alt="Small Business AI Solutions">
+        </div>
+      </div>
+
+      <!-- 🟦 Government Agencies -->
+      <div class="solution-box">
+        <div class="solution-text">
+          <h3>Government Agencies</h3>
+          <ul>
+            <li>Data analysis tools for policy and planning</li>
+            <li>Automated document and records management</li>
+            <li>AI-enhanced cybersecurity and threat detection</li>
+            <li>Citizen service chatbots and digital portals</li>
+            <li>Predictive systems for resource allocation</li>
+          </ul>
+        </div>
+        <div class="solution-image">
+          <img src="government.jpg" alt="Government AI Solutions">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ✅ Contact Section -->
+    <section id="contact" class="contact-section">
+      <h2>Contact Us</h2>
+      <p>
+        Ready to bring AI to your organization? Let's talk about how Qualnex Solutions can help.
+      </p>
+
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSccNahnPJWyBFLgOjuCUVl4hDj7IgmRnWN1Cm4XJrHPP1AEHA/viewform?embedded=true"
+        width="100%" 
+        height="850" 
+        frameborder="0"
+        marginheight="0" 
+        marginwidth="0"
+        scrolling="no"
+        loading="lazy">
+      </iframe>
+    
+    </section>
+
+    <!-- ✅ Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="qualnexlogo6.png" alt="Qualnex Solutions Logo">
+        </div>
+        <div class="footer-contact">
+          <p><i data-lucide="phone"></i> (203) 889-6998</p>
+          <p><i data-lucide="mail"></i> aacevesacosta@qualnexsolutions.com</p>
+        </div>
+      </div>
+    </footer>
+  
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    
 </body>
 </html>
