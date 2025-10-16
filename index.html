@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -286,115 +287,155 @@
       }
     }
 
-    /* 🟦 Our Solutions Section */
+        /* --- Base Section Styling --- */
     .solutions-section {
-      background-color: #1f80ff; /* brand blue background */
-      color: white;
-      padding: 100px 20px;
+      background-color: white;
+      padding: 60px 20px;
       text-align: center;
     }
 
-    .solutions-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: white; /* ensures header text is white */
+    .section-title {
+      color: #1f80ff;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
     }
 
-    .solutions-about {
-      color: white;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      max-width: 800px;
-      margin: 0 auto 60px auto; /* ↑ increased space before boxes */
-    }
-
-    /* Each solution box (same blue, white outline, slightly smaller) */
-    .solution-box {
+    /* --- Tab Buttons --- */
+    .tab-buttons {
+      margin-bottom: 30px;
       display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-      background-color: #1f80ff; /* same blue for box background */
-      border: 2px solid white; /* ✅ white outline */
-      border-radius: 16px;
-      margin-bottom: 60px;
-      overflow: hidden;
-      text-align: left;
-      max-width: 1200px;
-      height: 400px; /* ✅ reduced height (10% smaller) */
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Left side text */
-    .solution-text {
-      flex: 1.2;
-      padding: 50px; /* inner spacing */
-      color: white;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
 
-    .solution-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+    .tab-btn {
+      background-color: transparent;
+      border: 2px solid #1f80ff;
+      color: #1f80ff;
+      padding: 10px 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      background-color: #1f80ff;
       color: white;
     }
 
-    .solution-text ul {
-      list-style: none;
-      padding: 0;
+    /* --- Tabs --- */
+    .tab-content {
+      display: none;
     }
 
-    .solution-text li {
-      margin-bottom: 12px;
+    .tab-content.active {
+      display: block;
+    }
+
+    /* --- Grid --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .grid-item {
       position: relative;
-      padding-left: 20px;
-      font-size: 1.05rem;
-    }
-
-    .solution-text li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #1edfe6; /* accent bullet */
-      font-weight: bold;
-    }
-
-    /* Right side image */
-    .solution-image {
-      flex: 0.8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       overflow: hidden;
+      border-radius: 0px;
+      aspect-ratio: 4 / 3; /* ✅ ensures perfect squares */
     }
 
-    .solution-image img {
+    .grid-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    /* 📱 Mobile Responsive */
-    @media (max-width: 900px) {
-      .solution-box {
-        flex-direction: column;
-        text-align: center;
-        height: auto;
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 10px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .grid-item:hover .overlay {
+      background: rgba(0,0,0,0.6);
+    }
+
+    /* --- Description --- */
+    .description {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #333;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* --- Responsive Design --- */
+
+    /* Tablets (≤ 992px) */
+    @media (max-width: 992px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .solution-text {
-        padding: 40px 20px;
+      .section-title {
+        font-size: 2rem;
       }
 
-      .solution-image {
-        height: 250px;
+      .tab-btn {
+        font-size: 0.95rem;
+        padding: 8px 20px;
       }
     }
 
+    @media (max-width: 600px) {
+      /* Make tab buttons appear side by side */
+      .tab-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        max-width: 500px;
+        margin: 0 auto 30px;
+      }
 
+      .tab-btn {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px 0;
+        border-radius: 10px;
+      }
+
+      /* Grid layout: 1 per row on mobile */
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .description {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+    }
 
     /* ✅ Contact Section Styles */
     .contact-section {
@@ -415,6 +456,39 @@
       max-width: 700px;
       margin: 0 auto 40px auto;
       line-height: 1.6;
+    }
+
+        /* ✅ Make embedded form responsive */
+    .form-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      aspect-ratio: 3 / 4; /* maintains proportions */
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .form-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Adjust ratio for smaller devices */
+    @media (max-width: 768px) {
+      .form-container {
+        aspect-ratio: 3 / 5;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-container {
+        aspect-ratio: 2 / 3; /* taller on phones */
+      }
     }
 
     /* ✅ Footer */
@@ -514,7 +588,7 @@
   
     <!-- ✅ Intro Section -->
     <section id = "about">
-      <h2 class="about-header">Our Mission</h2>
+      <h2 class="about-header">Transform with A.I.</h2>
       <p class="about-text">
         A new digital age isn't coming — it's already here. 
         Just like the computer and the internet once redefined how we work and communicate, 
@@ -523,7 +597,7 @@
 
       <!-- 🟦 Core Values (now part of About section) -->
       <div class="core-values">
-        <h3 class="core-header">Core Values</h3>
+        <h3 class="core-header">Our Core Values</h3>
 
         <div class="core-values-container">
           <!-- Quality -->
@@ -559,48 +633,59 @@
       </div>
     </section>
 
-    <!-- ✅ Our Solutions Section -->
     <section id="solutions" class="solutions-section">
-      <h2 class="solutions-title">Our Solutions</h2>
-      <p class="solutions-about">
-        Qualnex Solutions provides practical, results-driven AI solutions built to fit the unique needs of small businesses and government agencies alike. From automation to analytics to AI integration, we make innovation accessible, actionable, and transformative.
-        We are committed to collaborating with you to provide solutions tailored to your requirements and in doing so, help work work smarter, faster, and more efficiently.
-      </p>
-
-      <!-- 🟦 Small Businesses -->
-      <div class="solution-box">
-        <div class="solution-text">
-          <h3>Small Businesses</h3>
-          <ul>
-            <li><u>Chatbots & Virtual Assistants</u> — Automate customer service, appointment booking, and lead capture to save time and boost engagement</li>
-            <li><u>Marketing & Content Creation</u> — Generate blogs, social posts, and SEO-optimized copy that attract customers and grow your brand</li>
-            <li><u>Website Development & Online Presence</u> — Build intelligent websites and digital platforms that adapt to visitors, enhance visibility, and strengthen credibility online</li>
-            <li><u>Workflow & Task Automation</u> — Eliminate repetitive work like data entry, invoicing, or email follow-ups with A.I. automations</li>
-            <li><u>Custom A.I. integrations</u> - Seamlessly connect A.I. tools to your existing systems and software for smarter, more efficient operations</li>
-          </ul>
-        </div>
-        <div class="solution-image">
-          <img src="smallbusiness.jpg" alt="Small Business AI Solutions">
-        </div>
+      <h2 class="section-title">Products and Services</h2>
+    
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="showTab('small-business')">Small Business Solutions</button>
+        <button class="tab-btn" onclick="showTab('government')">Government Solutions</button>
       </div>
-
-      <!-- 🟦 Government Agencies -->
-      <div class="solution-box">
-        <div class="solution-text">
-          <h3>Government Agencies</h3>
-          <ul>
-            <li><u>Automated Document & Records Management</u> — Digitize, organize, and securely manage documents with A.I. to streamline recordkeeping and compliance</li>
-            <li><u>Server and Data Management</u> — Use AI to monitor, organize, and optimize data storage, improving performance, security, and resource allocation</li>
-            <li><u>Data Analysis & Reporting Tools</u> — Leverage AI to uncover trends, enhance resource allocation, and support data-informed decision making</li>
-            <li><u>Workflow Automation</u> — Simplify internal operations like approvals, reporting, and inter-department communication with A.I.-driven efficiency</li>
-            <li><u>A.I. Training & Adoption Support</u> — Equip staff with the knowledge and tools to confidently integrate A.I. into daily operations and decision-making</li>
-          </ul>
+    
+      <!-- Small Business Solutions -->
+      <div id="small-business" class="tab-content active">
+        <div class="grid">
+          <div class="grid-item"><img src="SB1.jpg"><div class="overlay"><span>SEO Web Development</span></div></div>
+          <div class="grid-item"><img src="SB2.jpg"><div class="overlay"><span>Chatbots & Virtual Assistants</span></div></div>
+          <div class="grid-item"><img src="SB3.jpg"><div class="overlay"><span>Automated Marketing & Content Creation</span></div></div>
+          <div class="grid-item"><img src="SB4.jpg"><div class="overlay"><span>Worklow Task Automation</span></div></div>
+          <div class="grid-item"><img src="SB5.jpg"><div class="overlay"><span>Software and Hardware Installation</span></div></div>
+          <div class="grid-item"><img src="smallbusiness.jpg"><div class="overlay"><span>Custom Commercial Integrations</span></div></div>
         </div>
-        <div class="solution-image">
-          <img src="government.jpg" alt="Government AI Solutions">
+    
+        <p class="description">
+          Our small business solutions are designed to small businesses and local enterprises with accessible, scalable, and AI-driven tools that simplify operations and accelerate growth.
+        </p>
+      </div>
+    
+      <!-- Government Solutions -->
+      <div id="government" class="tab-content">
+        <div class="grid">
+          <div class="grid-item"><img src="G1.jpg"><div class="overlay"><span>Automated Records Management</span></div></div>
+          <div class="grid-item"><img src="G2.jpg"><div class="overlay"><span>A.I. Training Courses</span></div></div>
+          <div class="grid-item"><img src="G3.jpg"><div class="overlay"><span>Cloud Data Management</span></div></div>
+          <div class="grid-item"><img src="SB4.jpg"><div class="overlay"><span>Workflow Task Automation</span></div></div>
+          <div class="grid-item"><img src="SB5.jpg"><div class="overlay"><span>Electronics and Hardware Procurement</span></div></div>
+          <div class="grid-item"><img src="government.jpg"><div class="overlay"><span>Custom Federal Integrations</span></div></div>
         </div>
+    
+        <p class="description">
+          Our government solutions leverage advanced automation, data security, and efficiency tools to streamline public service delivery and modernize operational infrastructure. We are also capable of delivering supply chain solutions for procurement of hardware and electronics.
+        </p>
       </div>
     </section>
+    
+    <script>
+      function showTab(tabName) {
+        const tabs = document.querySelectorAll('.tab-content');
+        const buttons = document.querySelectorAll('.tab-btn');
+        
+        tabs.forEach(tab => tab.classList.remove('active'));
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(tabName).classList.add('active');
+        event.target.classList.add('active');
+      }
+    </script>
 
 
     <!-- ✅ Contact Section -->
@@ -610,17 +695,16 @@
         Ready to bring AI to your organization? Let's talk about how Qualnex Solutions can help.
       </p>
 
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSccNahnPJWyBFLgOjuCUVl4hDj7IgmRnWN1Cm4XJrHPP1AEHA/viewform?embedded=true"
-        width="100%" 
-        height="930" 
-        frameborder="0"
-        marginheight="0" 
-        marginwidth="0"
-        scrolling="no"
-        loading="lazy">
-      </iframe>
-    
+      <div class="form-container">
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSccNahnPJWyBFLgOjuCUVl4hDj7IgmRnWN1Cm4XJrHPP1AEHA/viewform?embedded=true"
+          frameborder="0"
+          marginheight="0" 
+          marginwidth="0"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
     </section>
 
     <!-- ✅ Footer -->
