@@ -140,7 +140,7 @@
     background-image: url("websitebannerQS_NASA.jpg");
     background-size: cover;
     background-position: center;
-    filter: brightness(1.4);
+    filter: brightness(1);
     z-index: 0;
   }
   
