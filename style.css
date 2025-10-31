@@ -137,7 +137,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("images/websitebannerQS_NASA.jpg");
+    background-image: url("websitebannerQS_NASA.jpg");
     background-size: cover;
     background-position: center;
     filter: brightness(1.4);
